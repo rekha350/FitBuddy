@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        FitBuddy - AI Fitness Planner
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="/static/css/styles.css"
+    >
+
+</head>
+
+<body>
+
+<main class="container">
+
+    <section class="hero">
+
+        <div class="eyebrow">
+            AI FITNESS COACH
+        </div>
+
+        <h1>
+            FitBuddy
+        </h1>
+
+        <p>
+            Your AI-powered personalized fitness planning assistant.
+        </p>
+
+        <p class="hero-description">
+            Generate a personalized 7-day workout plan,
+            receive nutrition and recovery guidance,
+            and refine your plan using AI feedback.
+        </p>
+
+    </section>
+
+
+    {% if error %}
+
+    <div class="alert error">
+
+        <strong>
+            Something went wrong:
+        </strong>
+
+        <p>
+            {{ error }}
+        </p>
+
+    </div>
+
+    {% endif %}
+
+
+    <form
+        class="card form-grid"
+        method="post"
+        action="/generate-workout"
+    >
+
+        <div class="form-title">
+
+            <h2>
+                Create Your Fitness Plan
+            </h2>
+
+            <p>
+                Enter your details below.
+            </p>
+
+        </div>
+
+
+        <label>
+
+            User ID
+
+            <input
+                type="text"
+                name="user_id"
+                placeholder="Example: USER001"
+                required
+                maxlength="100"
+            >
+
+        </label>
+
+
+        <label>
+
+            Name
+
+            <input
+                type="text"
+                name="username"
+                placeholder="Your name"
+                required
+                maxlength="120"
+            >
+
+        </label>
+
+
+        <label>
+
+            Age
+
+            <input
+                type="number"
+                name="age"
+                min="13"
+                max="100"
+                placeholder="25"
+                required
+            >
+
+        </label>
+
+
+        <label>
+
+            Weight (kg)
+
+            <input
+                type="number"
+                name="weight"
+                min="20"
+                max="500"
+                step="0.1"
+                placeholder="60"
+                required
+            >
+
+        </label>
+
+
+        <label>
+
+            Fitness Goal
+
+            <select
+                name="goal"
+                required
+            >
+
+                <option value="weight loss">
+                    Weight Loss
+                </option>
+
+                <option value="muscle gain">
+                    Muscle Gain
+                </option>
+
+                <option value="general wellness">
+                    General Wellness
+                </option>
+
+                <option value="flexibility">
+                    Flexibility
+                </option>
+
+                <option value="endurance">
+                    Endurance
+                </option>
+
+            </select>
+
+        </label>
+
+
+        <label>
+
+            Workout Intensity
+
+            <select
+                name="intensity"
+                required
+            >
+
+                <option value="low">
+                    Low
+                </option>
+
+                <option
+                    value="medium"
+                    selected
+                >
+                    Medium
+                </option>
+
+                <option value="high">
+                    High
+                </option>
+
+            </select>
+
+        </label>
+
+
+        <button
+            class="button primary full"
+            type="submit"
+        >
+
+            Generate My 7-Day Plan
+
+        </button>
+
+    </form>
+
+
+    <section class="features">
+
+        <div class="feature">
+
+            <h3>
+                🏋️ Personalized Workouts
+            </h3>
+
+            <p>
+                AI-generated seven-day workout routines.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <h3>
+                🥗 Nutrition Tips
+            </h3>
+
+            <p>
+                Goal-aligned nutrition and recovery guidance.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <h3>
+                🔄 AI Feedback
+            </h3>
+
+            <p>
+                Refine your plan as your needs change.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <p class="disclaimer">
+
+        FitBuddy provides general wellness information,
+        not medical advice.
+
+    </p>
+
+</main>
+
+</body>
+
+</html>

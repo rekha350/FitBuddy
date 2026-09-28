@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        FitBuddy - Admin Dashboard
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="/static/css/styles.css"
+    >
+
+</head>
+
+<body>
+
+<main class="container wide">
+
+    <nav class="navigation">
+
+        <a href="/">
+            ← Home
+        </a>
+
+    </nav>
+
+
+    <section class="hero admin-hero">
+
+        <div class="eyebrow">
+            ADMINISTRATION
+        </div>
+
+        <h1>
+            FitBuddy Dashboard
+        </h1>
+
+        <p>
+            View registered users and their workout plans.
+        </p>
+
+    </section>
+
+
+    <div class="card table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        User
+                    </th>
+
+                    <th>
+                        Profile
+                    </th>
+
+                    <th>
+                        Goal
+                    </th>
+
+                    <th>
+                        Intensity
+                    </th>
+
+                    <th>
+                        Original Plan
+                    </th>
+
+                    <th>
+                        Updated Plan
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+            {% for user in users %}
+
+                <tr>
+
+                    <td>
+
+                        <strong>
+                            {{ user.username }}
+                        </strong>
+
+                        <br>
+
+                        <small>
+                            {{ user.user_id }}
+                        </small>
+
+                    </td>
+
+
+                    <td>
+
+                        {{ user.age }} years
+
+                        <br>
+
+                        {{ user.weight }} kg
+
+                    </td>
+
+
+                    <td>
+                        {{ user.goal }}
+                    </td>
+
+
+                    <td>
+                        {{ user.intensity }}
+                    </td>
+
+
+                    <td>
+
+                        <details>
+
+                            <summary>
+                                View Plan
+                            </summary>
+
+                            <pre>
+{{ user.original_plan }}
+                            </pre>
+
+                        </details>
+
+                    </td>
+
+
+                    <td>
+
+                        {% if user.updated_plan %}
+
+                        <details>
+
+                            <summary>
+                                View Updated Plan
+                            </summary>
+
+                            <pre>
+{{ user.updated_plan }}
+                            </pre>
+
+                        </details>
+
+                        {% else %}
+
+                        No update yet.
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+
+            {% else %}
+
+                <tr>
+
+                    <td
+                        colspan="6"
+                        class="empty"
+                    >
+
+                        No users have been registered yet.
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <p class="disclaimer">
+
+        Admin access is protected using the configured
+        ADMIN_TOKEN.
+
+    </p>
+
+</main>
+
+</body>
+
+</html>

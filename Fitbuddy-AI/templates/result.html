@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        FitBuddy - Your Plan
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="/static/css/styles.css"
+    >
+
+</head>
+
+<body>
+
+<main class="container">
+
+    <nav class="navigation">
+
+        <a href="/">
+            ← Create New Plan
+        </a>
+
+    </nav>
+
+
+    {% if message %}
+
+    <div class="alert success">
+
+        {{ message }}
+
+    </div>
+
+    {% endif %}
+
+
+    {% if user %}
+
+    <section class="card">
+
+        <div class="section-header">
+
+            <span class="eyebrow">
+                YOUR FITNESS PROFILE
+            </span>
+
+            <h1>
+                Hello, {{ user.username }} 👋
+            </h1>
+
+        </div>
+
+
+        <div class="profile">
+
+            <div>
+                <span>
+                    User ID
+                </span>
+
+                <strong>
+                    {{ user.user_id }}
+                </strong>
+            </div>
+
+
+            <div>
+                <span>
+                    Age
+                </span>
+
+                <strong>
+                    {{ user.age }}
+                </strong>
+            </div>
+
+
+            <div>
+                <span>
+                    Weight
+                </span>
+
+                <strong>
+                    {{ user.weight }} kg
+                </strong>
+            </div>
+
+
+            <div>
+                <span>
+                    Goal
+                </span>
+
+                <strong>
+                    {{ user.goal }}
+                </strong>
+            </div>
+
+
+            <div>
+                <span>
+                    Intensity
+                </span>
+
+                <strong>
+                    {{ user.intensity }}
+                </strong>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    {% if plan %}
+
+    <section class="card">
+
+        <div class="section-header">
+
+            <span class="eyebrow">
+                AI GENERATED
+            </span>
+
+            <h2>
+                7-Day Workout Plan
+            </h2>
+
+        </div>
+
+
+        <pre class="plan">{{ plan }}</pre>
+
+    </section>
+
+
+    <section class="card nutrition-card">
+
+        <div class="section-header">
+
+            <span class="eyebrow">
+                AI WELLNESS TIP
+            </span>
+
+            <h2>
+                Nutrition / Recovery Tip
+            </h2>
+
+        </div>
+
+
+        <p>
+            {{ tip }}
+        </p>
+
+    </section>
+
+
+    <section class="card">
+
+        <div class="section-header">
+
+            <span class="eyebrow">
+                PERSONALIZE
+            </span>
+
+            <h2>
+                Refine Your Workout Plan
+            </h2>
+
+            <p>
+                Tell FitBuddy what you want changed.
+            </p>
+
+        </div>
+
+
+        <form
+            method="post"
+            action="/submit-feedback"
+        >
+
+            <input
+                type="hidden"
+                name="user_id"
+                value="{{ user.user_id }}"
+            >
+
+
+            <label>
+
+                Your Feedback
+
+                <textarea
+                    name="feedback"
+                    maxlength="2000"
+                    required
+                    placeholder="Example: Add more cardio and make Friday a lighter recovery day."
+                ></textarea>
+
+            </label>
+
+
+            <button
+                class="button primary"
+                type="submit"
+            >
+
+                Update Plan With AI
+
+            </button>
+
+        </form>
+
+    </section>
+
+    {% endif %}
+
+    {% endif %}
+
+
+    <p class="disclaimer">
+
+        Safety reminder:
+        AI-generated fitness information should be reviewed
+        appropriately before use.
+
+    </p>
+
+</main>
+
+</body>
+
+</html>
